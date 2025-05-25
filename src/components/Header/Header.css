@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 32px 0 20px;
+}
+
+.header__logo {
+  margin-right: 24px;
+}
+
+.header__menu {
+  display: none;
+}
+
+.header__date-and-location {
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: Grotesk Bold, sans sans-serif;
+  letter-spacing: 0%;
+}
+
+.header__add-clothes-button {
+  margin: 0 20px 0 auto;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: Grotesk Bold, sans sans-serif;
+  letter-spacing: 0%;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__username {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1;
+  font-family: Grotesk Bold, sans sans-serif;
+  letter-spacing: 0%;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    display: block;
+    padding: 0;
+  }
+
+  .header__logo-menu-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header__logo {
+    margin: 0 0 32px;
+  }
+
+  .header__menu {
+    display: flex;
+    width: 44px;
+    height: 44px;
+  }
+
+  .header__username {
+    display: none;
+  }
+
+  .header__add-clothes-button {
+    display: none;
+  }
+
+  .header__avatar {
+    display: none;
+  }
+
+  .header__date-and-location {
+    margin: 0 0 16px;
+  }
+}

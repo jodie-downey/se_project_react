@@ -1,0 +1,32 @@
+.cards {
+  margin: 28px 0 117px;
+}
+
+.cards__list {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 323px));
+  gap: 20px;
+  justify-content: center;
+}
+
+.cards__text-weather {
+  font-size: 20px;
+  line-height: 1;
+  font-family: Grotesk Bold, sans serif;
+  margin: 0 0 34px;
+}
+
+@media screen and (max-width: 600px) {
+  .cards__list {
+    grid-template-columns: repeat(auto-fit, minmax(164px, 170px));
+    gap: 15px;
+  }
+
+  .cards__text-weather {
+    font-size: 20px;
+    line-height: 1;
+    font-family: Grotesk Bold, sans serif;
+    margin: 0 0 20px;
+  }
+}

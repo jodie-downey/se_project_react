@@ -1,0 +1,24 @@
+import "./ItemModal.css";
+import closeButton from "../../assets/preview-close.svg";
+
+function ItemModal({ activeModal, card, handleCloseClick }) {
+  return (
+    <div
+      onClick={handleCloseClick}
+      className={`modal ${activeModal === "preview" ? "modal__opened" : ""}`}
+    >
+      <div className="modal__content modal__content-item-preview">
+        <button className="modal__close-button">
+          <img onClick={handleCloseClick} src={closeButton} alt="Close" />
+        </button>
+        <img src={card.link} alt={card.name} className="modal__image" />
+        <div className="modal__text-container">
+          <h2 className="modal__caption">{card.name}</h2>
+          <p className="modal__weather">Weather: {card.weather}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ItemModal;

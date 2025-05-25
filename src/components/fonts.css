@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Grotesk Bold;
+  src: url(../vendor/CabinetGrotesk-Bold.woff);
+}
+
+@font-face {
+  font-family: Grotesk Medium;
+  src: url(../vendor/CabinetGrotesk-Medium.woff);
+}
