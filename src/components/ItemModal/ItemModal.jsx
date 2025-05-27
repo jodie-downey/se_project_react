@@ -5,9 +5,12 @@ function ItemModal({ activeModal, card, handleCloseClick }) {
   return (
     <div
       onClick={handleCloseClick}
-      className={`modal ${activeModal === "preview" ? "modal__opened" : ""}`}
+      className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}
     >
-      <div className="modal__content modal__content-item-preview">
+      <div
+        className="modal__content modal__content-item-preview"
+        onClick={(evt) => evt.stopPropagation()}
+      >
         <button className="modal__close-button">
           <img onClick={handleCloseClick} src={closeButton} alt="Close" />
         </button>

@@ -7,15 +7,14 @@ function ModalWithForm({
   buttonText,
   activeModal,
   handleCloseClick,
+  isOpen,
 }) {
   return (
     <div
       onClick={handleCloseClick}
-      className={`modal ${
-        activeModal === "add garment" ? "modal__opened" : ""
-      }`}
+      className={`modal ${isOpen ? "modal_opened" : ""}`}
     >
-      <div className="modal__content">
+      <div className="modal__content" onClick={(evt) => evt.stopPropagation()}>
         <h1 className="modal__title">{title}</h1>
         <button className="modal__close-button">
           <img onClick={handleCloseClick} src={closeButton} alt="Close" />

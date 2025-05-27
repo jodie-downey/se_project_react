@@ -5,7 +5,7 @@ function ItemCard({ item, onCardClick }) {
     onCardClick(item);
   };
   return (
-    <div className="item-card__container">
+    <div className="item-card__container ">
       <h2 className="item-card__title">{item.name}</h2>
       <img
         onClick={handleCardClick}
