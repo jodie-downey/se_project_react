@@ -20,8 +20,13 @@
   letter-spacing: 0%;
 }
 
-.header__add-clothes-button {
+.header__right-container {
+  display: flex;
   margin: 0 20px 0 auto;
+}
+
+.header__add-clothes-button {
+  margin: 0 20px;
   border: none;
   font-size: 20px;
   line-height: 24px;
@@ -78,5 +83,9 @@
 
   .header__date-and-location {
     margin: 0 0 16px;
+  }
+
+  .header__right-container {
+    display: none;
   }
 }

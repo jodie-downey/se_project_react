@@ -1,0 +1,22 @@
+.clothing__section-text {
+  font-size: 20px;
+  font-family: Grotesk Bold, sans-serif;
+  margin-right: 20px;
+  margin-bottom: 0;
+}
+
+.clothing__section-upper-text {
+  display: flex;
+  align-items: flex-end;
+}
+
+.clothing__section-button {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+  font-family: Grotesk Bold, sans-serif;
+  padding: 0;
+  margin-bottom: 0;
+  height: 25px;
+}

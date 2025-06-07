@@ -1,4 +1,5 @@
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch.jsx";
 
 import Logo from "../../assets/wtwr-logo.svg";
 import AvatarPlaceholder from "../../assets/wtwr-avatar.svg";
@@ -19,20 +20,23 @@ function Header({ handleAddButtonClick, weatherData }) {
       <p className="header__date-and-location">
         {currentDate} and {weatherData?.city || "Loading..."}
       </p>
-      <button
-        className="header__add-clothes-button"
-        type="button"
-        onClick={handleAddButtonClick}
-      >
-        + Add clothes
-      </button>
-      <div className="header__user-container">
-        <p className="header__username">NAME</p>
-        <img
-          className="header__avatar"
-          src={AvatarPlaceholder}
-          alt="avatar placeholder"
-        />
+      <div className="header__right-container">
+        <ToggleSwitch className="header__toggle" />
+        <button
+          className="header__add-clothes-button"
+          type="button"
+          onClick={handleAddButtonClick}
+        >
+          + Add clothes
+        </button>
+        <div className="header__user-container">
+          <p className="header__username">NAME</p>
+          <img
+            className="header__avatar"
+            src={AvatarPlaceholder}
+            alt="avatar placeholder"
+          />
+        </div>
       </div>
     </header>
   );

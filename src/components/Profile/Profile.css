@@ -1,0 +1,15 @@
+.profile__container {
+  display: flex;
+}
+
+.profile__sidebar {
+  max-width: 226px;
+  margin-right: 116px;
+  margin-top: 27px;
+}
+
+.profile__clothing-section {
+  margin-top: 27px;
+  max-width: 1015px;
+  width: 100%;
+}
