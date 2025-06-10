@@ -1,6 +1,6 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "../Main/cards.css";
-import "./ClothingSection.css";
+import "./ClothesSection.css";
 
 function ClothingSection({ handleCardClick, clothingItems }) {
   return (
