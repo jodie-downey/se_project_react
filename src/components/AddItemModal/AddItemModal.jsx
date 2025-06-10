@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModalWithForm from "../ModaWithForm/ModalWithForm";
-import { use } from "react";
+
+import("./AddItemModal.css");
 
 function AddItemModal({
   isOpen,
