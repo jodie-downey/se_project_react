@@ -1,18 +1,18 @@
 import SideBar from "../SideBar/SideBar";
-import ClothingSection from "../ClothingSection/ClothingSection";
+import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
-function Profile({ handleCardClick, clothingItems }) {
+function Profile({ handleCardClick, clothesItems }) {
   return (
     <div className="profile__container">
       <section className="profile__sidebar">
         {" "}
         <SideBar />{" "}
       </section>
-      <section className="profile__clothing-section">
-        <ClothingSection
+      <section className="profile__clothes-section">
+        <ClothesSection
           handleCardClick={handleCardClick}
-          clothingItems={clothingItems}
+          clothesItems={clothesItems}
         />
       </section>
     </div>

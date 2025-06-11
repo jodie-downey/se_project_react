@@ -14,7 +14,7 @@ import { getweather, filterWeatherData } from "../../utils/weatherApi";
 import {
   coordinates,
   APIkey,
-  defaultClothingItems,
+  defaultclothesItems,
 } from "../../utils/constants";
 import { getItems, postItems, deleteItem } from "../../utils/api";
 
@@ -27,7 +27,7 @@ function App() {
     isDay: false,
   });
 
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothesItems, setClothesItems] = useState(defaultclothesItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -54,7 +54,7 @@ function App() {
     postItems({ name, imageUrl, weather })
       .then((data) => {
         setNewItem(data);
-        setClothingItems([{ name, imageUrl, weather }, ...clothingItems]);
+        setClothesItems([data, ...clothesItems]);
         closeActiveModal();
       })
       .catch(console.error);
@@ -63,8 +63,8 @@ function App() {
   const handleDelete = () => {
     deleteItem(selectedCard._id)
       .then((data) => {
-        setClothingItems(
-          clothingItems.filter((item) => item._id !== selectedCard._id)
+        setClothesItems(
+          clothesItems.filter((item) => item._id !== selectedCard._id)
         );
         closeActiveModal();
       })
@@ -83,7 +83,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothesItems(data);
       })
       .catch(console.error);
   }, []);
@@ -105,7 +105,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
+                  clothesItems={clothesItems}
                 />
               }
             />
@@ -114,7 +114,7 @@ function App() {
               element={
                 <Profile
                   handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
+                  clothesItems={clothesItems}
                 />
               }
             />

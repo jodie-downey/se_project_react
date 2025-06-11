@@ -2,16 +2,16 @@ import ItemCard from "../ItemCard/ItemCard";
 import "../Main/cards.css";
 import "./ClothesSection.css";
 
-function ClothingSection({ handleCardClick, clothingItems }) {
+function ClothesSection({ handleCardClick, clothesItems }) {
   return (
-    <div className="clothing__section-container">
-      <div className="clothing__section-upper-text">
-        <p className="clothing__section-text">Your Items</p>
-        <button className="clothing__section-button">+ Add New</button>
+    <div className="clothes__section-container">
+      <div className="clothes__section-upper-text">
+        <p className="clothes__section-text">Your Items</p>
+        <button className="clothes__section-button">+ Add New</button>
       </div>
       <section className="cards">
         <ul className="cards__list">
-          {clothingItems.map((item) => {
+          {clothesItems.map((item) => {
             return (
               <ItemCard
                 key={item._id}
@@ -26,4 +26,4 @@ function ClothingSection({ handleCardClick, clothingItems }) {
   );
 }
 
-export default ClothingSection;
+export default ClothesSection;
