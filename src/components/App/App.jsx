@@ -115,6 +115,7 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   clothesItems={clothesItems}
+                  handleButtonClick={handleAddButtonClick}
                 />
               }
             />

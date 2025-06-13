@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalWithForm from "../ModaWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./AddItemModal.css";
 
