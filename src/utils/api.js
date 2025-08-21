@@ -8,10 +8,10 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function postItems({ name, imageUrl, weather }) {
+function postItems({ name, imageUrl, weather }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", authorization: token },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -19,11 +19,11 @@ function postItems({ name, imageUrl, weather }) {
     }),
   }).then(checkResponse);
 }
-function deleteItem(id) {
+function deleteItem(id, token) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", authorization: token },
   }).then(checkResponse);
 }
 
-export { getItems, postItems, deleteItem };
+export { checkResponse, getItems, postItems, deleteItem, baseUrl };

@@ -17,19 +17,23 @@ function Main({ weatherData, handleCardClick, clothesItems }) {
           {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
-          {clothesItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                />
-              );
-            })}
+          {clothesItems.length > 0 ? (
+            clothesItems
+              .filter((item) => {
+                return item.weather === weatherData.type;
+              })
+              .map((item) => {
+                return (
+                  <ItemCard
+                    key={item._id}
+                    item={item}
+                    onCardClick={handleCardClick}
+                  />
+                );
+              })
+          ) : (
+            <li>"Wardrobe Loading"</li>
+          )}
         </ul>
       </section>
     </main>

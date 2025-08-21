@@ -25,6 +25,26 @@
   margin: 0 20px 0 auto;
 }
 
+.header__signup-button {
+  margin: 0 20px;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: Grotesk Bold, sans sans-serif;
+  letter-spacing: 0%;
+  padding: 0;
+}
+
+.header__signin-button {
+  margin: 0;
+  border: none;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: Grotesk Bold, sans sans-serif;
+  letter-spacing: 0%;
+  padding: 0;
+}
+
 .header__add-clothes-button {
   margin: 0 20px;
   border: none;
