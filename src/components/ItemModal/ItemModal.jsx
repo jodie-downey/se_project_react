@@ -1,8 +1,17 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import "./ItemModal.css";
 import closeButton from "../../assets/preview-close.svg";
 
 function ItemModal({ activeModal, card, handleCloseClick, handleDelete }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser._id;
+
+  console.log("currentUser:", currentUser);
+  console.log("card.owner:", card.owner);
+  console.log("isOwn:", isOwn);
+
   return (
     <div
       onClick={handleCloseClick}
