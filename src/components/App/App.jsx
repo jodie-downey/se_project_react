@@ -99,7 +99,6 @@ function App() {
     const token = localStorage.getItem("jwt");
     localStorage.removeItem("jwt", token);
     setUserLoggedIn(false);
-    useNavigate("/");
     console.log("signout clicked");
   };
 
@@ -107,8 +106,9 @@ function App() {
     const token = localStorage.getItem("jwt");
     postItems({ name, imageUrl, weather }, token)
       .then((data) => {
+        console.log(data);
         setNewItem(data);
-        setClothesItems([data, ...clothesItems]);
+        setClothesItems([data.data, ...clothesItems]);
         closeActiveModal();
       })
       .catch(console.error);

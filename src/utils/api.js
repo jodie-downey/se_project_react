@@ -11,7 +11,10 @@ function getItems() {
 function postItems({ name, imageUrl, weather }, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", authorization: token },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -22,7 +25,10 @@ function postItems({ name, imageUrl, weather }, token) {
 function deleteItem(id, token) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json", authorization: token },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 
