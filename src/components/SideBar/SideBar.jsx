@@ -5,8 +5,10 @@ import avatar from "../../assets/wtwr-avatar.svg";
 function SideBar({ handleLogoutClick }) {
   return (
     <div className="sidebar__container">
-      <img className="sidebar__avatar" src={avatar} alt="avatar" />
-      <p className="sidebar__username">User Name</p>
+      <div className="sidebar__container-upper">
+        <img className="sidebar__avatar" src={avatar} alt="avatar" />
+        <p className="sidebar__username">User Name</p>
+      </div>
       <button className="sidebar__change-profile" type="button">
         Change Profile Data
       </button>
