@@ -8,10 +8,6 @@ function ItemModal({ activeModal, card, handleCloseClick, handleDelete }) {
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser._id;
 
-  console.log("currentUser:", currentUser);
-  console.log("card.owner:", card.owner);
-  console.log("isOwn:", isOwn);
-
   return (
     <div
       onClick={handleCloseClick}

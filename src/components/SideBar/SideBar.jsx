@@ -2,14 +2,18 @@ import "./SideBar.css";
 
 import avatar from "../../assets/wtwr-avatar.svg";
 
-function SideBar({ handleLogoutClick }) {
+function SideBar({ handleLogoutClick, handleEditProfileClick }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__container-upper">
         <img className="sidebar__avatar" src={avatar} alt="avatar" />
         <p className="sidebar__username">User Name</p>
       </div>
-      <button className="sidebar__change-profile" type="button">
+      <button
+        className="sidebar__change-profile"
+        type="button"
+        onClick={handleEditProfileClick}
+      >
         Change Profile Data
       </button>
       <button

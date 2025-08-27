@@ -32,4 +32,22 @@ function deleteItem(id, token) {
   }).then(checkResponse);
 }
 
-export { checkResponse, getItems, postItems, deleteItem, baseUrl };
+function patchEditUser({ name, avatar }, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
+
+export {
+  checkResponse,
+  getItems,
+  postItems,
+  deleteItem,
+  baseUrl,
+  patchEditUser,
+};

@@ -12,10 +12,16 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 import { getweather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getItems, postItems, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  postItems,
+  deleteItem,
+  patchEditUser,
+} from "../../utils/api";
 import { postUser, postUserLogin, checkToken } from "../../utils/auth";
 
 function App() {
@@ -29,6 +35,7 @@ function App() {
   const [isLoggedIn, setUserLoggedIn] = useState(false);
 
   const [newUser, setNewUser] = useState({});
+  const [editUser, setEditCurrentUser] = useState({});
   const [clothesItems, setClothesItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -62,6 +69,13 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleEditProfileClick = () => {
+    const token = localStorage.getItem("jwt");
+    setActiveModal("edit");
+    checkToken(token);
+    console.log(token);
+  };
+
   function getUserInfo(token) {
     if (token) {
       return checkToken(token).then((res) => {
@@ -81,6 +95,13 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
+  };
+
+  const handleEditProfileModalSubmit = ({ name, avatar }) => {
+    patchEditUser((name, avatar)).then((data) => {
+      setEditCurrentUser(data);
+      closeActiveModal();
+    });
   };
 
   const handleLoginModalSubmit = ({ email, password }) => {
@@ -106,7 +127,6 @@ function App() {
     const token = localStorage.getItem("jwt");
     postItems({ name, imageUrl, weather }, token)
       .then((data) => {
-        console.log(data);
         setNewItem(data);
         setClothesItems([data.data, ...clothesItems]);
         closeActiveModal();
@@ -185,6 +205,7 @@ function App() {
                     clothesItems={clothesItems}
                     handleButtonClick={handleAddButtonClick}
                     handleLogoutClick={handleLogout}
+                    handleEditProfileClick={handleEditProfileClick}
                   />
                 }
               />
@@ -197,6 +218,14 @@ function App() {
                 handleCloseClick={closeActiveModal}
                 onRegisterModalSubmit={handleRegisterModalSubmit}
                 newUser={newUser}
+              />
+            }
+            {
+              <EditProfileModal
+                isOpen={activeModal === "edit"}
+                activeModal={activeModal}
+                onEditProfileModalSubmit={handleEditProfileModalSubmit}
+                editUser={editUser}
               />
             }
             {
