@@ -43,10 +43,11 @@ function EditProfileModal({
         <input
           type="string"
           className="modal__input"
+          placeholder={currentUser.name}
           id="username"
           required
           onChange={handleUsernameChange}
-          value={currentUser.name}
+          value={name}
         />
       </label>
       <label htmlFor="avatar" className="modal__label modal__label-text-box">
@@ -54,10 +55,11 @@ function EditProfileModal({
         <input
           type="url"
           className="modal__input"
+          placeholder={currentUser.avatar}
           id="avatar"
           required
           onChange={handleAvatarChange}
-          value={currentUser.avatar}
+          value={avatar}
         />
       </label>
     </ModalWithForm>

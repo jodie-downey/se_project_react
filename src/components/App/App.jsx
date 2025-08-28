@@ -70,10 +70,7 @@ function App() {
   };
 
   const handleEditProfileClick = () => {
-    const token = localStorage.getItem("jwt");
     setActiveModal("edit");
-    checkToken(token);
-    console.log(token);
   };
 
   function getUserInfo(token) {
@@ -98,7 +95,8 @@ function App() {
   };
 
   const handleEditProfileModalSubmit = ({ name, avatar }) => {
-    patchEditUser((name, avatar)).then((data) => {
+    const token = localStorage.getItem("jwt");
+    patchEditUser({ name, avatar }, token).then((data) => {
       setEditCurrentUser(data);
       closeActiveModal();
     });
