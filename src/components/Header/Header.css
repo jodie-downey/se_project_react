@@ -68,6 +68,12 @@
   letter-spacing: 0%;
 }
 
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 600px) {
   .header {
     display: block;

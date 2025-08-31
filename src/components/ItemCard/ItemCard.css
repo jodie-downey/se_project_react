@@ -24,6 +24,21 @@
   text-align: center;
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.item-card__like-button {
+  position: absolute;
+  top: 15px;
+  right: 111px;
+  left: 194px;
+  border: none;
+  background-color: none;
+}
+
+.item-card__like-button-img {
+  height: 15px;
+  width: 18px;
 }
 
 .item-card__img {

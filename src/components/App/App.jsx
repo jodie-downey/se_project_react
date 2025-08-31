@@ -21,6 +21,8 @@ import {
   postItems,
   deleteItem,
   patchEditUser,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/api";
 import { postUser, postUserLogin, checkToken } from "../../utils/auth";
 
@@ -35,7 +37,6 @@ function App() {
   const [isLoggedIn, setUserLoggedIn] = useState(false);
 
   const [newUser, setNewUser] = useState({});
-  const [editUser, setEditCurrentUser] = useState({});
   const [clothesItems, setClothesItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -97,7 +98,7 @@ function App() {
   const handleEditProfileModalSubmit = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
     patchEditUser({ name, avatar }, token).then((data) => {
-      setEditCurrentUser(data);
+      setUserInfo(data);
       closeActiveModal();
     });
   };
@@ -142,6 +143,27 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    console.log("handleCardLike called with:", { id, isLiked });
+    const token = localStorage.getItem("jwt");
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothesItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+            console.log("card liked");
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothesItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -192,6 +214,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothesItems={clothesItems}
+                    handleCardLike={handleCardLike}
                   />
                 }
               />
@@ -204,6 +227,7 @@ function App() {
                     handleButtonClick={handleAddButtonClick}
                     handleLogoutClick={handleLogout}
                     handleEditProfileClick={handleEditProfileClick}
+                    handleCardLike={handleCardLike}
                   />
                 }
               />
@@ -223,7 +247,7 @@ function App() {
                 isOpen={activeModal === "edit"}
                 activeModal={activeModal}
                 onEditProfileModalSubmit={handleEditProfileModalSubmit}
-                editUser={editUser}
+                editUser={currentUser}
               />
             }
             {
