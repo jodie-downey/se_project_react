@@ -39,6 +39,7 @@
 .item-card__like-button-img {
   height: 15px;
   width: 18px;
+  cursor: pointer;
 }
 
 .item-card__img {

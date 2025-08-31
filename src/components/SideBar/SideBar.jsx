@@ -2,18 +2,25 @@ import { useContext } from "react";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./SideBar.css";
-import avatar from "../../assets/wtwr-avatar.svg";
 
 function SideBar({ handleLogoutClick, handleEditProfileClick }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   return (
     <div className="sidebar__container">
       <div className="sidebar__container-upper">
-        <img
-          className="sidebar__avatar"
-          src={currentUser.avatar}
-          alt="avatar"
-        />
+        {isLoggedIn ? (
+          currentUser.avatar ? (
+            <img
+              className="sidebar__avatar"
+              src={currentUser.avatar}
+              alt="avatar placeholder"
+            />
+          ) : (
+            <div className="sidebar__avatar-placeholder">
+              {currentUser.name.charAt(0)}
+            </div>
+          )
+        ) : null}
         <p className="sidebar__username">{currentUser.name}</p>
       </div>
       <button

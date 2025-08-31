@@ -74,6 +74,14 @@
   border-radius: 50%;
 }
 
+.header__avatar-placeholder {
+  background-color: yellow;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .header {
     display: block;
