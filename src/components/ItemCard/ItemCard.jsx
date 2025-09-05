@@ -8,22 +8,10 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const id = item._id;
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(
-    "About to check isLiked - item:",
-    item,
-    "currentUser:",
-    currentUser
-  );
   const isLiked =
     currentUser &&
     currentUser._id &&
     item.likes.some((id) => id === currentUser._id);
-  console.log("ItemCard render - item exists?", !!item, "item:", item);
-  console.log("ItemCard data check:", {
-    item: item,
-    itemLikes: item?.likes,
-    currentUser: currentUser,
-  });
 
   const handleCardClick = () => {
     onCardClick(item);

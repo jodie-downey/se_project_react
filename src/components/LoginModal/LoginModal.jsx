@@ -35,12 +35,15 @@ function LoginModal({
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="login-profile-email"
+        className="modal__label modal__label-text-box"
+      >
         Email{""}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="login-profile-email"
           placeholder="Email"
           required
           minLength="1"
@@ -48,12 +51,15 @@ function LoginModal({
           value={email}
         />
       </label>
-      <label htmlFor="password" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="login-profile-password"
+        className="modal__label modal__label-text-box"
+      >
         Password{""}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="login-profile-password"
           placeholder="Password"
           required
           onChange={handlePasswordChange}

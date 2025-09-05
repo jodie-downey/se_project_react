@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 import ItemCard from "../ItemCard/ItemCard";
 import "../Main/cards.css";
 import "./ClothesSection.css";
@@ -8,6 +11,8 @@ function ClothesSection({
   handleButtonClick,
   handleCardLike,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div className="clothes__section-container">
       <div className="clothes__section-upper-text">

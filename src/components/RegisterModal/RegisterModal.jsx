@@ -48,12 +48,15 @@ function RegisterModal({
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="register-profile-email"
+        className="modal__label modal__label-text-box"
+      >
         Email{""}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="register-profile-email"
           placeholder="Email"
           required
           minLength="1"
@@ -61,36 +64,45 @@ function RegisterModal({
           value={email}
         />
       </label>
-      <label htmlFor="password" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="register-profile-password"
+        className="modal__label modal__label-text-box"
+      >
         Password{""}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="register-profile-password"
           placeholder="Password"
           required
           onChange={handlePasswordChange}
           value={password}
         />
       </label>
-      <label htmlFor="name" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="register-profile-name"
+        className="modal__label modal__label-text-box"
+      >
         name{""}
         <input
           type="string"
           className="modal__input"
-          id="username"
+          id="register-profile-name"
           placeholder="Name"
           required
           onChange={handleUsernameChange}
           value={name}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="register-profile-avatar"
+        className="modal__label modal__label-text-box"
+      >
         Avatar{""}
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="register-profile-avatar"
           placeholder="Avatar URL"
           required
           onChange={handleAvatarChange}

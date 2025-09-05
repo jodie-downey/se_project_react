@@ -22,14 +22,14 @@ function AddItemModal({
     // );
   };
 
-  const handlenameChange = (e) => {
+  const handleNameChange = (e) => {
     setName(e.target.value);
     // setIsValid(
     //   e.target.value.length > 0 && imageURL.checkValidity() && weather !== ""
     // );
   };
 
-  const handleimageURLChange = (e) => {
+  const handleImageURLChange = (e) => {
     setImageUrl(e.target.value);
     // setIsValid(
     //   name.length > 0 && checkValidity({imageURL}) && weather !== ""
@@ -53,37 +53,46 @@ function AddItemModal({
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="add-item-name"
+        className="modal__label modal__label-text-box"
+      >
         Name{""}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="add-item-name"
           placeholder="Name"
           required
           minLength="1"
           maxLength="20"
-          onChange={handlenameChange}
+          onChange={handleNameChange}
           value={name}
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="add-item-imageURL"
+        className="modal__label modal__label-text-box"
+      >
         Image{""}
         <input
           type="url"
           className="modal__input"
-          id="imageURL"
+          id="add-item-imageURL"
           placeholder="Image URL"
           required
-          onChange={handleimageURLChange}
+          onChange={handleImageURLChange}
           value={imageUrl}
         />
       </label>
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type</legend>
-        <label htmlFor="hot" className="modal__label modal__label-radio">
+        <label
+          htmlFor="add-item-hot"
+          className="modal__label modal__label-radio"
+        >
           <input
-            id="hot"
+            id="add-item-hot"
             type="radio"
             className="modal__radio-input"
             name="weather-filter"
@@ -93,9 +102,12 @@ function AddItemModal({
           />
           Hot
         </label>
-        <label htmlFor="warm" className="modal__label modal__label-radio">
+        <label
+          htmlFor="add-item-warm"
+          className="modal__label modal__label-radio"
+        >
           <input
-            id="warm"
+            id="add-item-warm"
             type="radio"
             className="modal__radio-input"
             name="weather-filter"
@@ -105,9 +117,12 @@ function AddItemModal({
           />
           Warm
         </label>
-        <label htmlFor="cold" className="modal__label modal__label-radio">
+        <label
+          htmlFor="add-item-cold"
+          className="modal__label modal__label-radio"
+        >
           <input
-            id="cold"
+            id="add-item-cold"
             type="radio"
             className="modal__radio-input"
             name="weather-filter"

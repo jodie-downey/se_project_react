@@ -1,5 +1,5 @@
-import { act, useEffect, useState, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 import "./App.css";
 import Header from "../Header/Header";
@@ -41,9 +41,11 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [newitem, setNewItem] = useState({});
+  const [newItem, setnewItem] = useState({});
 
   const [currentUser, setUserInfo] = useState("");
+
+  const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -119,15 +121,15 @@ function App() {
     const token = localStorage.getItem("jwt");
     localStorage.removeItem("jwt", token);
     setUserLoggedIn(false);
-    console.log("signout clicked");
+    Navigate("/");
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     const token = localStorage.getItem("jwt");
     postItems({ name, imageUrl, weather }, token)
       .then((data) => {
-        setNewItem(data);
-        setClothesItems([data.data, ...clothesItems]);
+        setnewItem(data);
+        setClothesItems([data, ...clothesItems]);
         closeActiveModal();
       })
       .catch(console.error);
@@ -136,7 +138,7 @@ function App() {
   const handleDelete = () => {
     const token = localStorage.getItem("jwt");
     deleteItem(selectedCard._id, token)
-      .then((data) => {
+      .then((item) => {
         setClothesItems(
           clothesItems.filter((item) => item._id !== selectedCard._id)
         );
@@ -152,7 +154,7 @@ function App() {
       ? addCardLike(id, token)
           .then((updatedCard) => {
             setClothesItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard.data : item))
+              cards.map((item) => (item._id === id ? updatedCard : item))
             );
             console.log("card liked");
           })
@@ -160,7 +162,7 @@ function App() {
       : removeCardLike(id, token)
           .then((updatedCard) => {
             setClothesItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard.data : item))
+              cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err));
@@ -193,6 +195,13 @@ function App() {
     }
   }, []);
 
+  const ProtectedRoute = ({ isLoggedIn, children }) => {
+    if (!isLoggedIn) {
+      return <Navigate to="/" replace />;
+    }
+    return children;
+  };
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -221,14 +230,16 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    handleCardClick={handleCardClick}
-                    clothesItems={clothesItems}
-                    handleButtonClick={handleAddButtonClick}
-                    handleLogoutClick={handleLogout}
-                    handleEditProfileClick={handleEditProfileClick}
-                    handleCardLike={handleCardLike}
-                  />
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      handleCardClick={handleCardClick}
+                      clothesItems={clothesItems}
+                      handleButtonClick={handleAddButtonClick}
+                      handleLogoutClick={handleLogout}
+                      handleEditProfileClick={handleEditProfileClick}
+                      handleCardLike={handleCardLike}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -247,6 +258,7 @@ function App() {
                 isOpen={activeModal === "edit"}
                 activeModal={activeModal}
                 onEditProfileModalSubmit={handleEditProfileModalSubmit}
+                handleCloseClick={closeActiveModal}
                 editUser={currentUser}
               />
             }
@@ -264,7 +276,7 @@ function App() {
                 activeModal={activeModal}
                 handleCloseClick={closeActiveModal}
                 onAddItemModalSubmit={handleAddItemModalSubmit}
-                newItem={newitem}
+                newItem={newItem}
               />
             }
             <ItemModal

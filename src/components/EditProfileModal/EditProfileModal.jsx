@@ -38,25 +38,31 @@ function EditProfileModal({
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="edit-profile-name"
+        className="modal__label modal__label-text-box"
+      >
         Name{""}
         <input
           type="string"
           className="modal__input"
           placeholder={currentUser.name}
-          id="username"
+          id="edit-profile-name"
           required
           onChange={handleUsernameChange}
           value={name}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label modal__label-text-box">
+      <label
+        htmlFor="edit-profile-avatar"
+        className="modal__label modal__label-text-box"
+      >
         Avatar{""}
         <input
           type="url"
           className="modal__input"
           placeholder={currentUser.avatar}
-          id="avatar"
+          id="edit-profile-avatar"
           required
           onChange={handleAvatarChange}
           value={avatar}
