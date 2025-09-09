@@ -78,12 +78,16 @@ function App() {
 
   function getUserInfo(token) {
     if (token) {
-      return checkToken(token).then((res) => {
-        if (res) {
-          setUserInfo(res);
-          setUserLoggedIn(true);
-        }
-      });
+      return checkToken(token)
+        .then((res) => {
+          if (res) {
+            setUserInfo(res);
+            setUserLoggedIn(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking token:", error);
+        });
     }
   }
 
@@ -94,27 +98,35 @@ function App() {
         handleLoginModalSubmit({ email, password });
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error checking token:", error);
+      });
   };
 
   const handleEditProfileModalSubmit = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    patchEditUser({ name, avatar }, token).then((data) => {
-      setUserInfo(data);
-      closeActiveModal();
-    });
+    patchEditUser({ name, avatar }, token)
+      .then((data) => {
+        setUserInfo(data);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error checking token:", error);
+      });
   };
 
   const handleLoginModalSubmit = ({ email, password }) => {
     postUserLogin({ email, password })
       .then((userData) => {
         localStorage.setItem("jwt", userData.token);
-        let token = localStorage.getItem("jwt");
+        const token = localStorage.getItem("jwt");
         getUserInfo(token);
         setUserLoggedIn(true);
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error checking token:", error);
+      });
   };
 
   const handleLogout = () => {
@@ -144,7 +156,9 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error checking token:", error);
+      });
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -186,7 +200,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let token = localStorage.getItem("jwt");
+    const token = localStorage.getItem("jwt");
     if (!token) {
       handleSigninButtonClick();
     }
@@ -194,6 +208,22 @@ function App() {
       getUserInfo(token).then(() => setUserLoggedIn(true));
     }
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   const ProtectedRoute = ({ isLoggedIn, children }) => {
     if (!isLoggedIn) {

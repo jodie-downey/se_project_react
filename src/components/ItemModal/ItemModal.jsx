@@ -7,7 +7,7 @@ import closeButton from "../../assets/preview-close.svg";
 function ItemModal({ activeModal, card, handleCloseClick, handleDelete }) {
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = () => {
-    card.owner._id === currentUser._id;
+    return currentUser && card.owner && card.owner._id === currentUser._id;
   };
 
   return (
@@ -26,9 +26,9 @@ function ItemModal({ activeModal, card, handleCloseClick, handleDelete }) {
         <div className="modal__text-container">
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
-          {isOwn && (
-            <button onClick={handleDelete} className="modal__delete-button">
-              Delete Item
+          {currentUser && isOwn() && (
+            <button className="modal__delete-button" onClick={handleDelete}>
+              Delete item
             </button>
           )}
         </div>

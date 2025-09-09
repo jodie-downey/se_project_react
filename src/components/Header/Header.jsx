@@ -21,6 +21,10 @@ function Header({
   });
   const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
 
+  const avatarPlaceholderInitial = () => {
+    if (currentUser === currentUser) return currentUser.name.charAt(0);
+  };
+
   return (
     <header className="header">
       <div className="header__logo-menu-container">
@@ -73,7 +77,7 @@ function Header({
                 />
               ) : (
                 <div className="header__avatar-placeholder">
-                  {currentUser.name.charAt(0)}
+                  {avatarPlaceholderInitial()}
                 </div>
               )}
             </Link>
