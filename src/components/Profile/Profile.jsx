@@ -14,6 +14,13 @@ function Profile({
   handleCardLike,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
+
+  const filteredClothesItems = clothesItems.filter((item) => {
+    const ownerID =
+      typeof item.owner === "string" ? item.owner : item.owner._id;
+    return ownerID === currentUser._id;
+  });
+
   return (
     <div className="profile__container">
       <section className="profile__sidebar">
@@ -26,10 +33,7 @@ function Profile({
       <section className="profile__clothes-section">
         <ClothesSection
           handleCardClick={handleCardClick}
-          clothesItems={clothesItems.filter((item) => {
-            console.log(currentUser, clothesItems);
-            return item.owner._id === currentUser._id;
-          })}
+          clothesItems={filteredClothesItems}
           handleButtonClick={handleButtonClick}
           handleCardLike={handleCardLike}
         />

@@ -32,8 +32,6 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     onEditProfileModalSubmit({ name, avatar });
-    setUsername("");
-    setAvatar("");
   };
 
   return (

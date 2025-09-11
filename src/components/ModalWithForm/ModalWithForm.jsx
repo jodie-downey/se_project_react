@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import closeButton from "../../assets/modal-close.svg";
+import { useId } from "react";
 
 function ModalWithForm({
   children,
@@ -9,7 +10,9 @@ function ModalWithForm({
   handleCloseClick,
   isOpen,
   onSubmit,
+  footerContent,
 }) {
+  const FormId = useId();
   return (
     <div
       onClick={handleCloseClick}
@@ -20,12 +23,17 @@ function ModalWithForm({
         <button className="modal__close-button">
           <img onClick={handleCloseClick} src={closeButton} alt="Close" />
         </button>
-        <form onSubmit={onSubmit} className="modal__form">
+        <form onSubmit={onSubmit} className="modal__form" id={FormId}>
           {children}
-          <button type="submit" className="modal__submit">
+        </form>
+        <div className="modal__button-container">
+          <button type="submit" className="modal__submit" form={FormId}>
             {buttonText}
           </button>
-        </form>
+          {footerContent && (
+            <div className="modal__footer">{footerContent}</div>
+          )}
+        </div>
       </div>
     </div>
   );

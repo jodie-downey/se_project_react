@@ -8,6 +8,7 @@ function RegisterModal({
   activeModal,
   handleCloseClick,
   onRegisterModalSubmit,
+  handleSigninButtonClick,
 }) {
   const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -33,11 +34,17 @@ function RegisterModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegisterModalSubmit({ name, password, email, avatar });
-    setAvatar("");
-    setUsername("");
-    setEmail("");
-    setPassword("");
   };
+
+  const toggleButton = (
+    <button
+      type="button"
+      className="modal__toggle-button"
+      onClick={handleSigninButtonClick}
+    >
+      or Log In
+    </button>
+  );
 
   return (
     <ModalWithForm
@@ -47,6 +54,8 @@ function RegisterModal({
       activeModal={activeModal}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
+      handleSigninButtonClick={handleSigninButtonClick}
+      footerContent={toggleButton}
     >
       <label
         htmlFor="register-profile-email"

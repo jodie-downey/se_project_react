@@ -133,7 +133,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     localStorage.removeItem("jwt", token);
     setUserLoggedIn(false);
-    Navigate("/");
+    navigate("/");
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
@@ -280,6 +280,7 @@ function App() {
                 activeModal={activeModal}
                 handleCloseClick={closeActiveModal}
                 onRegisterModalSubmit={handleRegisterModalSubmit}
+                handleSigninButtonClick={handleSigninButtonClick}
                 newUser={newUser}
               />
             }
@@ -298,6 +299,7 @@ function App() {
                 activeModal={activeModal}
                 handleCloseClick={closeActiveModal}
                 onLoginModalSubmit={handleLoginModalSubmit}
+                handleSignupButtonClick={handleSignupButtonClick}
               />
             }
             {

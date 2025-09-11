@@ -103,6 +103,23 @@
   padding: 8px 16px;
 }
 
+.modal__toggle-button {
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Grotesk Bold, sans serif;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.modal__button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
 @media screen and (max-width: 600px) {
   .modal__content {
     max-width: 375px;

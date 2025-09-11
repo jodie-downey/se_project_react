@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
@@ -7,6 +7,7 @@ function LoginModal({
   activeModal,
   handleCloseClick,
   onLoginModalSubmit,
+  handleSignupButtonClick,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,12 +20,27 @@ function LoginModal({
     setEmail(e.target.value);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [isOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onLoginModalSubmit({ password, email });
-    setEmail("");
-    setPassword("");
   };
+
+  const toggleButton = (
+    <button
+      type="button"
+      className="modal__toggle-button"
+      onClick={handleSignupButtonClick}
+    >
+      or Sign Up
+    </button>
+  );
 
   return (
     <ModalWithForm
@@ -34,6 +50,8 @@ function LoginModal({
       activeModal={activeModal}
       handleCloseClick={handleCloseClick}
       onSubmit={handleSubmit}
+      handleSignupButtonClick={handleSignupButtonClick}
+      footerContent={toggleButton}
     >
       <label
         htmlFor="login-profile-email"

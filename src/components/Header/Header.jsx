@@ -22,7 +22,7 @@ function Header({
   const { isLoggedIn, currentUser } = useContext(CurrentUserContext);
 
   const avatarPlaceholderInitial = () => {
-    if (currentUser === currentUser) return currentUser.name.charAt(0);
+    if (currentUser === currentUser) return currentUser?.name?.charAt(0);
   };
 
   return (
