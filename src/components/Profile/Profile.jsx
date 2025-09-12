@@ -17,7 +17,7 @@ function Profile({
 
   const filteredClothesItems = clothesItems.filter((item) => {
     const ownerID =
-      typeof item.owner === "string" ? item.owner : item.owner._id;
+      typeof item.owner === "string" ? item.owner : item.owner?._id;
     return ownerID === currentUser._id;
   });
 

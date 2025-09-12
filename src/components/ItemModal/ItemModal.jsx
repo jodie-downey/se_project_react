@@ -7,7 +7,9 @@ import closeButton from "../../assets/preview-close.svg";
 function ItemModal({ activeModal, card, handleCloseClick, handleDelete }) {
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = () => {
-    return currentUser && card.owner && card.owner._id === currentUser._id;
+    const ownerID =
+      typeof card.owner === "string" ? card.owner : card.owner?._id;
+    return ownerID === currentUser._id;
   };
 
   return (

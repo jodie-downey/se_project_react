@@ -121,7 +121,6 @@ function App() {
         localStorage.setItem("jwt", userData.token);
         const token = localStorage.getItem("jwt");
         getUserInfo(token);
-        setUserLoggedIn(true);
         closeActiveModal();
       })
       .catch((error) => {
@@ -133,6 +132,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     localStorage.removeItem("jwt", token);
     setUserLoggedIn(false);
+    setUserInfo(null);
     navigate("/");
   };
 
